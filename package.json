@@ -4,7 +4,8 @@
   "description": "Discord Bot Ticket Advance yang cocok untuk server store",
   "main": "index.js",
   "scripts": {
-    "test": "node ."
+    "test": "node .",
+    "dev": "nodemon ."
   },
   "keywords": [],
   "author": "cemy",
