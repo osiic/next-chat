@@ -62,12 +62,14 @@ module.exports = {
       }
     } else if (interaction.isButton()) {
       // respond to the button
+      
       try {
         await interaction.deferReply({ ephemeral: true });
+
         switch (interaction.customId) {
           case "open-ticket":
             try {
-              let channel = await interaction.guild.channels.create({
+|              let channel = await interaction.guild.channels.create({
                 name: `t-${interaction.user.username}`,
                 type: ChannelType.GuildText,
                 permissionOverwrites: [
