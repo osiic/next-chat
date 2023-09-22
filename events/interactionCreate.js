@@ -116,7 +116,6 @@ module.exports = {
           case "close-ticket":
             await interaction.editReply("Clone The Ticket in 10s");
             setTimeout(() => {
-              console.log(interaction.channel);
               interaction.channel.delete();
             }, 1000 * 10);
             break;
