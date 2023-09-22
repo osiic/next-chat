@@ -1,8 +1,12 @@
 const {
-  Collection,
-  ChannelType,
-  PermissionFlagsBits,
   Events,
+  Collection,
+  ButtonStyle,
+  ChannelType,
+  EmbedBuilder,
+  ButtonBuilder,
+  ActionRowBuilder,
+  PermissionFlagsBits,
 } = require("discord.js");
 
 module.exports = {
@@ -58,13 +62,14 @@ module.exports = {
       }
     } else if (interaction.isButton()) {
       // respond to the button
+      
       try {
-        let channel;
         await interaction.deferReply({ ephemeral: true });
+
         switch (interaction.customId) {
           case "open-ticket":
             try {
-              channel = await interaction.guild.channels.create({
+|              let channel = await interaction.guild.channels.create({
                 name: `t-${interaction.user.username}`,
                 type: ChannelType.GuildText,
                 permissionOverwrites: [
@@ -79,10 +84,27 @@ module.exports = {
                 ],
               });
 
+              const ticketEmbed = new EmbedBuilder()
+                .setColor(0x0099ff)
+                .setTitle("Open Ticket")
+                .setDescription(
+                  "**Close a Ticket using the button below this message!**",
+                )
+                .setFooter({
+                  text: "Do not use for joking or playing around",
+                  iconURL: interaction.guild.iconURL(),
+                });
+
+              const closeTicket = new ButtonBuilder()
+                .setLabel("Close Ticket")
+                .setCustomId("close-ticket")
+                .setStyle(ButtonStyle.Danger)
+                .setEmoji("✖️");
+
               channel.send({
                 content: `<@${interaction.user.id}>`,
-                // embeds: [ticketEmbed],
-                // components: [new ActionRowBuilder().addComponents(openTicket)],
+                embeds: [ticketEmbed],
+                components: [new ActionRowBuilder().addComponents(closeTicket)],
               });
 
               await interaction.editReply(
@@ -93,6 +115,12 @@ module.exports = {
             }
             break;
 
+          case "close-ticket":
+            await interaction.editReply("Clone The Ticket in 10s");
+            setTimeout(() => {
+              interaction.channel.delete();
+            }, 1000 * 10);
+            break;
           default:
             break;
         }
