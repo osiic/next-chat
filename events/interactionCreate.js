@@ -84,23 +84,7 @@ module.exports = {
                   },
                 ],
               });
-              const ticketEmbed = new EmbedBuilder()
-                .setColor(0x0099ff)
-                .setTitle("Open Ticket")
-                .setDescription(
-                  "**Close a Ticket using the button below this message!**",
-                )
-                .setFooter({
-                  text: "Do not use for joking or playing around",
-                  iconURL: interaction.guild.iconURL(),
-                });
-
-              const closeTicket = new ButtonBuilder()
-                .setLabel("Close Ticket")
-                .setCustomId("close-ticket")
-                .setStyle(ButtonStyle.Danger)
-                .setEmoji("✖️");
-
+              
               const ticketEmbed = new EmbedBuilder()
                 .setColor(0x0099ff)
                 .setTitle("Open Ticket")
