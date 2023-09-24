@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./lib/express.js");
 
 const { DISCORD_TOKEN, APPLICATION_ID, GUILD_ID } = process.env;
 const fs = require("node:fs");
