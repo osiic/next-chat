@@ -70,6 +70,7 @@ module.exports = {
           case "open-ticket":
             try {
               let channel = await interaction.guild.channels.create({
+
                 name: `t-${interaction.user.username}`,
                 type: ChannelType.GuildText,
                 permissionOverwrites: [
@@ -83,6 +84,7 @@ module.exports = {
                   },
                 ],
               });
+              
               const ticketEmbed = new EmbedBuilder()
                 .setColor(0x0099ff)
                 .setTitle("Open Ticket")
