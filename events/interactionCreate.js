@@ -62,14 +62,14 @@ module.exports = {
       }
     } else if (interaction.isButton()) {
       // respond to the button
-      
+
       try {
         await interaction.deferReply({ ephemeral: true });
 
         switch (interaction.customId) {
           case "open-ticket":
             try {
-|              let channel = await interaction.guild.channels.create({
+              let channel = await interaction.guild.channels.create({
                 name: `t-${interaction.user.username}`,
                 type: ChannelType.GuildText,
                 permissionOverwrites: [
@@ -83,7 +83,6 @@ module.exports = {
                   },
                 ],
               });
-
               const ticketEmbed = new EmbedBuilder()
                 .setColor(0x0099ff)
                 .setTitle("Open Ticket")
@@ -128,8 +127,9 @@ module.exports = {
         console.error(`Error executing ${interaction.customId}`);
         console.error(error);
       }
-    } else if (interaction.isStringSelectMenu()) {
-      // respond to the select menu
     }
+    // else if (interaction.isStringSelectMenu()) {
+    //   // respond to the select menu
+    // }
   },
 };
