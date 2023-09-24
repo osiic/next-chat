@@ -84,7 +84,7 @@ module.exports = {
                   },
                 ],
               });
-              
+
               const ticketEmbed = new EmbedBuilder()
                 .setColor(0x0099ff)
                 .setTitle("Open Ticket")
